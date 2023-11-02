@@ -295,7 +295,7 @@ function Chitiet() {
           </Box>
         </Box>
         {/* status */}
-        <Box className="display-flex1280">
+        <Box className="display-flexbody">
           <Box
             display="flex"
             justifyContent="space-between"
@@ -330,7 +330,8 @@ function Chitiet() {
                 }}
                 width="712"
                 title="Danh sách nhân viên vào làm"
-                content={<p></p>
+                content={
+                  <p></p>
                   // <Customization
                   //   styledTable={columnsmodal}
                   //   styledTableRow={rowsmodal}
@@ -360,7 +361,8 @@ function Chitiet() {
                 }}
                 width="712"
                 title="Danh sách nhân viên vào làm"
-                content={<p></p>
+                content={
+                  <p></p>
                   // <Customization
                   //   styledTable={columnsmodal}
                   //   styledTableRow={rowsmodal}
@@ -406,7 +408,7 @@ function Chitiet() {
         </Box>
 
         {/* detail */}
-        <Box className="display-flex1280" marginTop="16px">
+        <Box className="display-flexbody" marginTop="16px">
           <Box
             display="flex"
             justifyContent="space-between"
@@ -564,73 +566,6 @@ function Chitiet() {
             </Table>
           </TableContainer>
         </Box>
-        {/* <Box sx={{ width: "1280px", marginTop: "10px" }}>
-          <Customization
-            styledTable={columns}
-            styledTableRow={rows}
-            stylededit={"Chỉnh sửa"}
-            handledit={handleEdit}
-          />
-          <CommonModal
-            stylebuttons={{}}
-            width={"220px"}
-            stylebutton={{ width: "187px" }}
-            content={
-              <Box>
-                <Box>Trương Bá Tây - TayTb</Box>
-                <Box
-                  sx={{ m: "15px 0" }}
-                  component="form"
-                  noValidate
-                  autoComplete="off"
-                  display={"flex"}
-                >
-                  <TextField
-                    id="outlined-size-small"
-                    defaultValue="08:00"
-                    size="small"
-                  />
-                  <Box
-                    sx={{ m: "0 10px", alignItems: "center", display: "flex" }}
-                  >
-                    -
-                  </Box>
-                  <TextField
-                    id="outlined-size-small"
-                    defaultValue="08:00"
-                    size="small"
-                  />
-                </Box>
-                <Box>
-                  <FormControl sx={{ width: 185 }} size="small">
-                    <InputLabel id="demo-select-small-label"></InputLabel>
-                    <Select
-                      labelId="demo-select-small-label"
-                      id="demo-select-small"
-                      value={age}
-                      defaultValue="ssssssssss"
-                      onChange={handleChange}
-                    >
-                      <MenuItem value={10}>Bình Thường</MenuItem>
-                      <MenuItem value={20}>Đi Muộn</MenuItem>
-                      <MenuItem value={30}>Nghỉ Làm</MenuItem>
-                    </Select>
-                  </FormControl>
-                </Box>
-                <Box sx={{ m: "15px 0 0 0" }}>
-                  <TextField
-                    id="outlined-multiline-static"
-                    multiline
-                    rows={4}
-                    defaultValue=""
-                  />
-                </Box>
-              </Box>
-            }
-            isOpen={isModalOpen1}
-            handleClose={handleCloseModa1}
-          />
-        </Box> */}
       </Box>
     </>
   );

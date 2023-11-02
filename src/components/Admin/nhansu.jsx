@@ -19,8 +19,9 @@ import ClickAwayListener from "@mui/material/ClickAwayListener";
 import { useState } from "react";
 import Dowloadd from "../../image/bxs_download.svg";
 import { DataGrid } from "@mui/x-data-grid";
+import Layoutbody from "../Layout/Layout";
 
-const rows = [
+const rowss = [
   { id: 1, lastName: null, email: null, stt: 35 },
   { id: 2, lastName: null, email: null, stt: 42 },
   { id: 3, lastName: null, email: null, stt: 45 },
@@ -87,486 +88,410 @@ function Nhansu() {
     alert("Đã Xóa");
     // handleTooltipClose(rowId);
   };
+  const column = [
+    { field: "id", headerName: "STT", width: 40 },
+    {
+      field: "hvt",
+      headerName: "Họ và tên",
+      width: 220,
+      renderCell: () => <Link to={"/chitiet"}>Phan Minh Phong</Link>,
+    },
+    {
+      field: "mnv",
+      headerName: "Mã nhân viên",
+      type: "number",
+      width: 150,
+    },
+    {
+      field: "email",
+      headerName: "Địa chỉ email",
+      width: 250,
+    },
+    {
+      field: "mqr",
+      headerName: "Mã QR",
+      width: 150,
+    },
+    {
+      field: "gch",
+      headerName: "Ghi chú",
+      width: 323,
+    },
+    {
+      field: "tht",
+      headerName: "Thao tác",
+      width: 100,
+      renderCell: (params) => (
+        <Box sx={{ display: "flex", justifyContent: "space-between", gap: 1 }}>
+          <Box>
+            <Link style={{ textDecoration: "none" }} onClick={handEdit}>
+              Sửa
+            </Link>
+          </Box>
+          <Box>
+            <Tooltip
+              arrow
+              placement="left"
+              PopperProps={{
+                disablePortal: true,
+              }}
+              onClose={closehandleDelete}
+              open={params.row.id === selectedRowId}
+              disableFocusListener
+              disableHoverListener
+              disableTouchListener
+              title={
+                <Box sx={{ color: "black", padding:"8px" }}>
+                  <Box>
+                    <Typography
+                      sx={{
+                        color: "#303E65",
+                        fontSize: "12px",
+                        fontWeight: "400",
+                      }}
+                    >
+                      Bạn có chắc chắn muốn xóa nhân
+                    </Typography>
+                    <Typography>:Phan Minh Phong không?</Typography>
+                  </Box>
+                  <Box sx={{marginTop:"10px", display: "flex", justifyContent: "space-around" }}>
+                    <Button
+                      size="small"
+                      variant="outlined"
+                      onClick={closehandleDelete}
+                    >
+                      Hủy
+                    </Button>
+                    <Button
+                      size="small"
+                      color="error"
+                      variant="outlined"
+                      onClick={handledelete}
+                    >
+                      Xóa
+                    </Button>
+                  </Box>
+                </Box>
+              }
+            >
+              <Link
+                style={{ textDecoration: "none", color: "red" }}
+                onClick={() => handleDelete(params.row.id)}
+              >
+                Xóa
+              </Link>
+            </Tooltip>
+          </Box>
+        </Box>
+      ),
+    },
+  ];
+  const rows = [
+    {
+      id: 1,
+      mnv: "2344656",
+      email: 35,
+      mqr: "QTDVB",
+      gch: "Đi muộn",
+    },
+    {
+      id: 2,
+      mnv: "2344656",
+      email: 35,
+      mqr: "QTDVB",
+      gch: "Đi muộn",
+    },
+    {
+      id: 3,
+      mnv: "2344656",
+      email: 35,
+      mqr: "QTDVB",
+      gch: "Đi muộn",
+    },
+    {
+      id: 4,
+      mnv: "2344656",
+      email: 35,
+      mqr: "QTDVB",
+      gch: "Đi muộn",
+    },
+    {
+      id: 5,
+      mnv: "2344656",
+      email: 35,
+      mqr: "QTDVB",
+      gch: "Đi muộn",
+    },
+    {
+      id: 6,
+      mnv: "2344656",
+      email: 35,
+      mqr: "QTDVB",
+      gch: "Đi muộn",
+    },
+    {
+      id: 7,
+      mnv: "2344656",
+      email: 35,
+      mqr: "QTDVB",
+      gch: "Đi muộn",
+    },
+  ];
   const columns = [
     { field: "id", headerName: "STT", width: 40 },
     {
       field: "hvt",
       headerName: "Họ và tên",
       width: 220,
+      editable: true,
     },
     {
       field: "email",
       headerName: "Địa chỉ email",
       type: "number",
       width: 250,
+      editable: true,
     },
     {
       field: "sdt",
       headerName: "Số điện thoại",
       width: 150,
-    },
-  
-  ];
-  const rowss = [
-    {
-      id: 1,
-      hvt: "Phan Minh Phong",
-      email: 35,
-      sdt: "86079670707",
-    },
-    {
-      id: 1,
-      hvt: "Phan Minh Phong",
-      email: 35,
-      sdt: "86079670707",
-    },
-    {
-      id: 1,
-      hvt: "Phan Minh Phong",
-      email: 35,
-      sdt: "86079670707",
-    },
-    {
-      id: 1,
-      hvt: "Phan Minh Phong",
-      email: 35,
-      sdt: "86079670707",
-    },
-    {
-      id: 1,
-      hvt: "Phan Minh Phong",
-      email: 35,
-      sdt: "86079670707",
-    },{
-      id: 1,
-      hvt: "Phan Minh Phong",
-      email: 35,
-      sdt: "86079670707",
+      editable: true,
     },
   ];
 
   return (
-    <Box
-      sx={{
-        width: "100vw",
-        height: "100vh",
-        display: "flex",
-        alignItems: "center",
-        // justifyContent: "center",
-        flexDirection: "column",
-      }}
-    >
-      <CommonModal
-        stylebuttons={{
-          display: "flex",
-          justifyContent: "flex-end",
-        }}
-        width="450px"
-        title="Phan Minh Phong"
-        content={
+    <Layoutbody
+      content={
+        <Box
+          sx={{
+            width: "100%",
+            height: "100vh",
+            display: "flex",
+            alignItems: "center",
+            // justifyContent: "center",
+            flexDirection: "column",
+          }}
+        >
+          <CommonModal
+            stylebuttons={{
+              display: "flex",
+              justifyContent: "flex-end",
+            }}
+            width="450px"
+            title="Phan Minh Phong"
+            content={
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-around",
+                  }}
+                >
+                  <Box>ID/Mã nhân viên</Box>
+                  <Box>Tên nhân viên*</Box>
+                  <Box>Email*</Box>
+                  <Box>QR-Code*</Box>
+                </Box>
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "10px",
+                  }}
+                >
+                  <Box>
+                    <TextField
+                      id="outlined-size-small"
+                      defaultValue="PhongPM"
+                      size="small"
+                    />
+                  </Box>
+                  <Box>
+                    <TextField
+                      id="outlined-size-small"
+                      defaultValue="Phan Minh Phong"
+                      size="small"
+                    />
+                  </Box>
+                  <Box>
+                    <TextField
+                      id="outlined-size-small"
+                      defaultValue="PhongThuy@LOve.com"
+                      size="small"
+                    />
+                  </Box>
+                  <Box>
+                    <TextField
+                      id="outlined-size-small"
+                      defaultValue="zasfffg"
+                      size="small"
+                    />
+                  </Box>
+                </Box>
+              </Box>
+            }
+            isOpen={isModalEdit}
+            handleClose={heandEditClose}
+          />
+
           <Box
             sx={{
+              width:"100%",
+              height: "84px",
               display: "flex",
+              alignItems: "center",
               justifyContent: "space-between",
             }}
           >
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-around",
-              }}
-            >
-              <Box>ID/Mã nhân viên</Box>
-              <Box>Tên nhân viên*</Box>
-              <Box>Email*</Box>
-              <Box>QR-Code*</Box>
+            <Box>
+              <h1
+                className="title-heading"
+                style={{ fontSize: "32px", paddingLeft: "0" }}
+              >
+                Quản Lý Nhân Sự
+              </h1>
             </Box>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "10px",
-              }}
-            >
-              <Box>
-                <TextField
-                  id="outlined-size-small"
-                  defaultValue="PhongPM"
-                  size="small"
-                />
-              </Box>
-              <Box>
-                <TextField
-                  id="outlined-size-small"
-                  defaultValue="Phan Minh Phong"
-                  size="small"
-                />
-              </Box>
-              <Box>
-                <TextField
-                  id="outlined-size-small"
-                  defaultValue="PhongThuy@LOve.com"
-                  size="small"
-                />
-              </Box>
-              <Box>
-                <TextField
-                  id="outlined-size-small"
-                  defaultValue="zasfffg"
-                  size="small"
-                />
-              </Box>
+
+            <Box>
+              <Button
+                sx={{
+                  right: "10px",
+                  background: "#6BCB77",
+                  "&:hover": {
+                    background: "#4CAF50",
+                  },
+                }}
+                variant="contained"
+              >
+                <img src={upload} alt="" />
+                Nhập file Excel
+              </Button>
+              <Button
+                onClick={() => handleOpenModalTest()}
+                sx={{
+                  background: "#6BCB77",
+                  "&:hover": {
+                    background: "#4CAF50",
+                  },
+                }}
+                variant="contained"
+                color="success"
+              >
+                <Box>+</Box>
+                Thêm
+              </Button>
+              <CommonModal
+                width={692}
+                title="Thêm nhân viên"
+                handleClose={handleCloseModal}
+                isOpen={isModalOpen}
+                content={
+                  <Box sx={{ height: 566, width: "100%" }}>
+                    <DataGrid
+                      sx={{
+                        "& .MuiDataGrid-cell": {
+                          border: "1px solid #F0F0F0",
+                          borderRadius: "2px",
+                          margin: "0 8px",
+                          maxHeight: "28px !important",
+                          minHeight: "28px !important",
+                        },
+
+                        "& .MuiDataGrid-columnHeader": {
+                          padding: "0 ",
+
+                          background: " #F0F0F0",
+                          margin: "6px 8px",
+                        },
+                        "& .MuiDataGrid-columnHeaders": {
+                          background: " #F0F0F0",
+                        },
+                        "& .MuiDataGrid-row": {
+                          margin: "6px",
+                          maxHeight: "28px !important",
+                          minHeight: "28px !important",
+                        },
+                        "& .MuiDataGrid-row:hover": {
+                          background: "rgba(0, 0, 0, 0.0) !important",
+                        },
+                        "& .MuiDataGrid-row.Mui-selected": {
+                          background: "rgba(0, 0, 0, 0.0) !important",
+                        },
+                      }}
+                      rows={rowss}
+                      columns={columns}
+                      initialState={{
+                        pagination: {
+                          paginationModel: {
+                            pageSize: 10,
+                          },
+                        },
+                      }}
+                    />
+                  </Box>
+                }
+              />
             </Box>
           </Box>
-        }
-        isOpen={isModalOpen}
-        handleClose={handleCloseModal}
-      />
-
-      <Box
-        sx={{
-          minWidth: "1280px",
-          height: "84px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
-        <Box>
-          <h1
-            className="title-heading"
-            style={{ fontSize: "32px", paddingLeft: "0" }}
-          >
-            Quản Lý Nhân Sự
-          </h1>
+          <Box className="display-flexbody">
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "flex-end",
+                mb: "15px",
+                alignItems: "center",
+              }}
+            >
+              <img src={Dowloadd} alt="" />
+              <Link>Xuất File Excel</Link>
+            </Box>
+            <Box sx={{ height: "100%", width: "100%", marginTop: "14px" }}>
+              <DataGrid
+                sx={{
+                  "& .MuiDataGrid-columnHeader": {
+                    color: "#303E65 ",
+                    fontWeight: 700,
+                    fontSize: 12,
+                    background: " #F0F0F0",
+                    minHeight: "40px !important",
+                    maxHeight: "50px !important",
+                  },
+                  "& .MuiDataGrid-row": {
+                    color: "#303E65 ",
+                    fontWeight: 400,
+                    fontSize: 12,
+                    minHeight: "40px !important",
+                    maxHeight: "40px !important",
+                  },
+                  "& .MuiDataGrid-cell": {
+                    minHeight: "40px !important",
+                    maxHeight: "40px !important",
+                  },
+                  "& .MuiDataGrid-columnHeaders": {
+                    background: " #F0F0F0",
+                  },
+                  "& .MuiDataGrid-row:hover": {
+                    background: "rgba(0, 0, 0, 0.0) !important",
+                  },
+                  "& .MuiDataGrid-row.Mui-selected": {
+                    background: "rgba(0, 0, 0, 0.0) !important",
+                  },
+                }}
+                rows={rows}
+                columns={column}
+              />
+            </Box>
+          </Box>
         </Box>
-
-        <Box>
-          <Button
-            sx={{
-              right: "10px",
-              background: "#6BCB77",
-              "&:hover": {
-                background: "#4CAF50",
-              },
-            }}
-            variant="contained"
-          >
-            <img src={upload} alt="" />
-            Nhập file Excel
-          </Button>
-          <Button
-            onClick={() => handEdit()}
-            sx={{
-              background: "#6BCB77",
-              "&:hover": {
-                background: "#4CAF50",
-              },
-            }}
-            variant="contained"
-            color="success"
-          >
-            <Box>+</Box>
-            Thêm
-          </Button>
-          <CommonModal
-            width={692}
-            title="Thêm nhân viên"
-            handleClose={heandEditClose}
-            isOpen={isModalEdit}
-            content={
-              <Box sx={{ height: 566, width: "100%" }}>
-                <DataGrid
-                  sx={{
-                    "& .MuiDataGrid-cell": {
-                      border: "1px solid #F0F0F0",
-                      borderRadius: "2px",
-                      margin: "0 8px",
-                      maxHeight: "28px !important",
-                      minHeight: "28px !important",
-                    },
-
-                    "& .MuiDataGrid-columnHeader": {
-                      background: " #F0F0F0",
-                      margin: "6px 8px",
-                    },
-                    "& .MuiDataGrid-columnHeaders": {
-                      background: " #F0F0F0",
-                    },
-                    "& .MuiDataGrid-row": {
-                      margin: "6px",
-                      maxHeight: "28px !important",
-                      minHeight: "28px !important",
-                    },
-                    "& .MuiDataGrid-row:hover": {
-                      background: "rgba(0, 0, 0, 0.0) !important",
-                    },
-                    "& .MuiDataGrid-row.Mui-selected": {
-                      background: "rgba(0, 0, 0, 0.0) !important",
-                    },
-                  }}
-                  rows={rowss}
-                  columns={columns}
-                  initialState={{
-                    pagination: {
-                      paginationModel: {
-                        pageSize: 10,
-                      },
-                    },
-                  }}
-                />
-              </Box>
-            }
-          />
-        </Box>
-      </Box>
-      <Box className="display-flex1280">
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "flex-end",
-            mb: "15px",
-            alignItems: "center",
-          }}
-        >
-          <img src={Dowloadd} alt="" />
-          <Link>Xuất File Excel</Link>
-        </Box>
-        <Box sx={{ height: "100%", width: "100%", marginTop: "14px" }}>
-          <DataGrid
-            sx={{
-              "& .MuiDataGrid-columnHeader": {
-                color: "#303E65 ",
-                fontWeight: 700,
-                fontSize: 12,
-                background: " #F0F0F0",
-                minHeight: "50px !important",
-                maxHeight: "50px !important",
-              },
-              "& .MuiDataGrid-row": {
-                color: "#303E65 ",
-                fontWeight: 400,
-                fontSize: 12,
-                minHeight: "40px !important",
-                maxHeight: "40px !important",
-              },
-              "& .MuiDataGrid-cell": {
-                minHeight: "40px !important",
-                maxHeight: "40px !important",
-              },
-              "& .MuiDataGrid-columnHeaders": {
-                background: " #F0F0F0",
-              },
-              "& .MuiDataGrid-row:hover": {
-                background: "rgba(0, 0, 0, 0.0) !important",
-              },
-              "& .MuiDataGrid-row.Mui-selected": {
-                background: "rgba(0, 0, 0, 0.0) !important",
-              },
-            }}
-            rows={rowss}
-            columns={columns}
-          />
-        </Box>
-        {/* <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 700 }} aria-label="customized table">
-            <TableHead>
-              <TableRow>
-                <StyledTableCell align="center">STT</StyledTableCell>
-                <StyledTableCell align="center">Họ và tên</StyledTableCell>
-                <StyledTableCell align="center">Mã nhân viên</StyledTableCell>
-                <StyledTableCell align="center">Địa chỉ email</StyledTableCell>
-                <StyledTableCell align="center">Mã QR</StyledTableCell>
-                <StyledTableCell align="center">Ghi chú</StyledTableCell>
-                <StyledTableCell align="center">Thao Tác</StyledTableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows.map((row, index) => (
-                <StyledTableRow key={row.id}>
-                  <StyledTableCell align="center">{row.id}</StyledTableCell>
-                  <StyledTableCell align="center">
-                    <Link to="/chitiet">{row.vn}</Link>
-                  </StyledTableCell>
-                  <StyledTableCell align="center">{row.nu}</StyledTableCell>
-                  <StyledTableCell align="center">{row.so}</StyledTableCell>
-                  <StyledTableCell align="center">{row.mu}</StyledTableCell>
-                  <StyledTableCell align="center">{row.noo}</StyledTableCell>
-                  <StyledTableCell key={row.index} align="center">
-                    {
-                      <Box
-                        key={row.index}
-                        sx={{
-                          display: "flex",
-                          gap: "1rem",
-                          justifyContent: "center",
-                        }}
-                      >
-                        <Box>
-                          <LinkButton
-                            underline="none"
-                            component="button"
-                            variant="body2"
-                            onClick={() => handleOpenModal(index)}
-                          >
-                            Sửa
-                          </LinkButton>
-                          <CommonModal
-                            stylebuttons={{
-                              display: "flex",
-                              justifyContent: "flex-end",
-                            }}
-                            width="450px"
-                            title="Phan Minh Phong"
-                            content={
-                              <Box
-                                sx={{
-                                  display: "flex",
-                                  justifyContent: "space-between",
-                                }}
-                              >
-                                <Box
-                                  sx={{
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    justifyContent: "space-around",
-                                  }}
-                                >
-                                  <Box>ID/Mã nhân viên</Box>
-                                  <Box>Tên nhân viên*</Box>
-                                  <Box>Email*</Box>
-                                  <Box>QR-Code*</Box>
-                                </Box>
-                                <Box
-                                  sx={{
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    gap: "10px",
-                                  }}
-                                >
-                                  <Box>
-                                    <TextField
-                                      id="outlined-size-small"
-                                      defaultValue="PhongPM"
-                                      size="small"
-                                    />
-                                  </Box>
-                                  <Box>
-                                    <TextField
-                                      id="outlined-size-small"
-                                      defaultValue="Phan Minh Phong"
-                                      size="small"
-                                    />
-                                  </Box>
-                                  <Box>
-                                    <TextField
-                                      id="outlined-size-small"
-                                      defaultValue="PhongThuy@LOve.com"
-                                      size="small"
-                                    />
-                                  </Box>
-                                  <Box>
-                                    <TextField
-                                      id="outlined-size-small"
-                                      defaultValue="zasfffg"
-                                      size="small"
-                                    />
-                                  </Box>
-                                </Box>
-                              </Box>
-                            }
-                            isOpen={isModalOpen[index]}
-                            handleClose={() => handleCloseModal(index)}
-                          />
-                        </Box>
-                        <Box>
-                          <ClickAwayListener
-                            onClickAway={() => handleTooltipClose(index)}
-                          >
-                            <Box>
-                              <Tooltip
-                                arrow
-                                PopperProps={{
-                                  disablePortal: true,
-                                }}
-                                onClose={() => handleTooltipClose(index)}
-                                open={tooltipOpen[index]}
-                                disableFocusListener
-                                disableHoverListener
-                                disableTouchListener
-                                title={
-                                  <Box
-                                    sx={{
-                                      background: "#fff",
-                                      width: "215px",
-                                      height: "92px",
-                                      p: "8px",
-                                    }}
-                                  >
-                                    <Box sx={{ color: "black", mb: "8px" }}>
-                                      <Typography
-                                        sx={{
-                                          color: "#303E65",
-                                          fontSize: "12px",
-                                          fontWeight: 400,
-                                          height: "40px",
-                                        }}
-                                      >
-                                        Bạn có chắc muôn xóa nhân viên: Phan
-                                        Minh Phong không?
-                                      </Typography>
-                                    </Box>
-                                    <Box
-                                      sx={{
-                                        display: "flex",
-                                        justifyContent: "space-around",
-                                      }}
-                                    >
-                                      <Button
-                                        sx={{ width: "50px" }}
-                                        onClick={() =>
-                                          handleTooltipClose(index)
-                                        }
-                                        variant="outlined"
-                                      >
-                                        hủy
-                                      </Button>
-                                      <Button
-                                        sx={{ width: "50px" }}
-                                        variant="outlined"
-                                        color="error"
-                                        onClick={() => handledelete(index)}
-                                      >
-                                        xóa
-                                      </Button>
-                                    </Box>
-                                  </Box>
-                                }
-                              >
-                                <LinkButton
-                                  color="red"
-                                  underline="none"
-                                  component="button"
-                                  variant="body2"
-                                  onClick={() => handleTooltipOpen(index)}
-                                >
-                                  Xóa
-                                </LinkButton>
-                              </Tooltip>
-                            </Box>
-                          </ClickAwayListener>
-                        </Box>
-                      </Box>
-                    }
-                  </StyledTableCell>
-                </StyledTableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer> */}
-      </Box>
-    </Box>
+      }
+    />
   );
 }
 

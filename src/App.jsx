@@ -8,25 +8,28 @@ import Nhansu from "./components/Admin/nhansu";
 // import QuanLy from "./components/Admin/quanlynhansu";
 import { Route, Routes } from "react-router-dom";
 import Header from "./components/Header/header";
-import Demo from "./components/Admin/demo"
 import Chitiet from "./components/Admin/chitiet";
+import Capnhap from "./components/Admin/capnhap";
+import CheckinQr from "./components/Admin/checkinqr";
+
 
 function App() {
   return (
-    <>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Tongquan />} />
-        <Route path="/chitiet" element={<Chitiet />} />
-        {/* <Route path="/quanly" element={<QuanLy />} /> */}
-        <Route path="/demo" element={<Demo />} />
-        <Route path="/lich" element={<Lichlam />} />
-        <Route path="/nhansu" element={<Nhansu />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/thongke" element={<Thongke />} />
-        <Route path="/forget-pass" element={<ForgetPass />} />
-      </Routes>
-    </>
+      <>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Tongquan />} />
+          {/* <Route path="/checkin" element={<Checkin />} /> */}
+          <Route path="/checkinqr" element={<CheckinQr />} />
+          <Route path="/chitiet" element={<Chitiet />} />
+          <Route path="/capnhap" element={<Capnhap />} />
+          <Route path="/lich" element={<Lichlam />} />
+          <Route path="/nhansu" element={<Nhansu />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/thongke" element={<Thongke />} />
+          <Route path="/forget-pass" element={<ForgetPass />} />
+        </Routes>
+      </>
   );
 }
 

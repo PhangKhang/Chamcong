@@ -22,6 +22,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { DataGrid } from "@mui/x-data-grid";
+import Layoutbody from "../Layout/Layout";
 
 const rows = [
   {
@@ -201,102 +202,101 @@ function Tongquan() {
       width: 148,
       editable: false,
       renderCell: (params) => (
-       
-          <Tooltip
-            arrow
-            placement="left"
-            PopperProps={{
-              disablePortal: true,
-            }}
-            onClose={closeModal}
-            open={params.row.id === selectedRowId}
-            disableFocusListener
-            disableHoverListener
-            disableTouchListener
-            title={
-              <Box
-                sx={{
-                  background: "#fff",
-                  width: "200px",
-                  height: "260px",
-                  p: "8px",
-                }}
-              >
-                <Box sx={{ color: "black", mb: "10px" }}>
-                  <Box>
-                    <Box>Trương Bá Tây - TayTb</Box>
+        <Tooltip
+          arrow
+          placement="left"
+          PopperProps={{
+            disablePortal: true,
+          }}
+          onClose={closeModal}
+          open={params.row.id === selectedRowId}
+          disableFocusListener
+          disableHoverListener
+          disableTouchListener
+          title={
+            <Box
+              sx={{
+                background: "#fff",
+                width: "200px",
+                height: "260px",
+                p: "8px",
+              }}
+            >
+              <Box sx={{ color: "black", mb: "10px" }}>
+                <Box>
+                  <Box>Trương Bá Tây - TayTb</Box>
+                  <Box
+                    sx={{ m: "10px 0" }}
+                    component="form"
+                    noValidate
+                    autoComplete="off"
+                    display={"flex"}
+                  >
+                    <TextField
+                      id="outlined-size-small"
+                      defaultValue="08:00"
+                      size="small"
+                    />
                     <Box
-                      sx={{ m: "10px 0" }}
-                      component="form"
-                      noValidate
-                      autoComplete="off"
-                      display={"flex"}
+                      sx={{
+                        m: "0 10px",
+                        alignItems: "center",
+                        display: "flex",
+                      }}
                     >
-                      <TextField
-                        id="outlined-size-small"
-                        defaultValue="08:00"
-                        size="small"
-                      />
-                      <Box
-                        sx={{
-                          m: "0 10px",
-                          alignItems: "center",
-                          display: "flex",
-                        }}
+                      -
+                    </Box>
+                    <TextField
+                      id="outlined-size-small"
+                      defaultValue="08:00"
+                      size="small"
+                    />
+                  </Box>
+                  <Box sx={{ minWidth: 120 }}>
+                    <FormControl fullWidth size="small">
+                      <InputLabel id="demo-select-small-label"></InputLabel>
+                      <Select
+                        id="demo-select-small"
+                        labelId="demo-select-small-label"
+                        value={age}
+                        onChange={handleChange}
                       >
-                        -
-                      </Box>
-                      <TextField
-                        id="outlined-size-small"
-                        defaultValue="08:00"
-                        size="small"
-                      />
-                    </Box>
-                    <Box sx={{ minWidth: 120 }}>
-                      <FormControl fullWidth size="small">
-                        <InputLabel id="demo-select-small-label"></InputLabel>
-                        <Select
-                          id="demo-select-small"
-                          labelId="demo-select-small-label"
-                          value={age}
-                          onChange={handleChange}
-                        >
-                          <MenuItem value={10}>bình thường</MenuItem>
-                          <MenuItem value={20}>đi muộn</MenuItem>
-                          <MenuItem value={30}>nghỉ làm</MenuItem>
-                        </Select>
-                      </FormControl>
-                    </Box>
-                    <Box sx={{ m: "15px 0" }}>
-                      <TextField
-                        id="outlined-multiline-static"
-                        multiline
-                        rows={1.5}
-                        defaultValue=""
-                      />
-                    </Box>
-                    <Box>
-                      <Button
-                        sx={{ width: "100%" }}
-                        size="small"
-                        variant="contained"
-                        onClick={handSave}
-                      >
-                        Lưu
-                      </Button>
-                    </Box>
+                        <MenuItem value={10}>bình thường</MenuItem>
+                        <MenuItem value={20}>đi muộn</MenuItem>
+                        <MenuItem value={30}>nghỉ làm</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </Box>
+                  <Box sx={{ m: "15px 0" }}>
+                    <TextField
+                      id="outlined-multiline-static"
+                      multiline
+                      rows={1.5}
+                      defaultValue=""
+                    />
+                  </Box>
+                  <Box>
+                    <Button
+                      sx={{ width: "100%" }}
+                      size="small"
+                      variant="contained"
+                      onClick={handSave}
+                    >
+                      Lưu
+                    </Button>
                   </Box>
                 </Box>
               </Box>
-            }
+            </Box>
+          }
+        >
+          <Link
+            onClick={() => handleEditButtonClick(params.row.id)}
+            className="edit-button"
           >
-            <Link
-              onClick={() => handleEditButtonClick(params.row.id)}
-              className="edit-button"
-            >
-              chỉnh sửa
-            </Link>
-          </Tooltip>
+            chỉnh sửa
+          </Link>
+        </Tooltip>
       ),
     },
   ];
@@ -406,9 +406,9 @@ function Tongquan() {
     setIsModalOpenEdit(false);
     setSelectedRowId(rowId);
   };
-  const handSave = ()=>{
-    closeModal()
-  }
+  const handSave = () => {
+    closeModal();
+  };
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -424,142 +424,138 @@ function Tongquan() {
     setAge(event.target.value);
   };
 
-  
-
-  // useEffect(() => {}, [isModalOpenEdit]);
-
   return (
-    <>
-      <Box
-        sx={{
-          width: "100vw",
-          height: "100vh",
-          display: "flex",
-          alignItems: "center",
-          flexDirection: "column",
-        }}
-      >
-        {/* titile */}
+    <Layoutbody
+      content={
         <Box
           sx={{
-            minWidth: "1280px",
-            height: "84px",
+            height: "100vh",
             display: "flex",
             alignItems: "center",
-            justifyContent: "space-between",
+            flexDirection: "column",
           }}
         >
-          <Box>
-            <h1
-              className="title-heading"
-              style={{ fontSize: "32px", paddingLeft: "0" }}
-            >
-              Tổng quan
-            </h1>
-          </Box>
-
-          <Box>
-            <img src={kosin} alt="" />
-          </Box>
-        </Box>
-        {/* status */}
-        <Box className="display-flex1280">
+          {/* titile */}
           <Box
-            display="flex"
-            justifyContent="space-between"
-            marginBottom="16px"
+            sx={{
+              width: "100%",
+              height: "84px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
           >
-            <h4
-              className="title-text"
-              style={{ fontSize: "14px", fontWeight: "400" }}
-            >
-              Chấm công hôm nay
-            </h4>
-            <h4 className="title-text" style={{ fontSize: "14px" }}>
-              08:56:32 thứ 3 ngày 03 tháng 10
-            </h4>
-          </Box>
-
-          <Box display="flex" justifyContent="space-between">
             <Box>
-              <CustomBox
-                onclick={handleOpenModal}
-                background="rgba(107, 203, 119, 0.20)"
-                colorTitle="#6BCB77"
-                title="35"
-                detail="Vào làm"
-                height="70px"
-                width="300px"
-                borderRadius="10px"
-                marginBottom="8px"
-              />
-              <CommonModal
-                stylebuttons={{
-                  width: "679px",
-                  display: "flex",
-                  justifyContent: "flex-end",
-                }}
-                width="712"
-                title="Danh sách nhân viên vào làm"
-                isOpen={isModalOpen}
-                handleClose={handleCloseModal}
-                content={
-                  <Box sx={{ height: 322, width: "100%" }}>
-                    <DataGrid
-                      sx={{
-                        "& .MuiDataGrid-cell": {
-                          border: "1px solid #F0F0F0",
-                          borderRadius: "2px",
-                          margin: "0 8px",
-                          maxHeight: "28px !important",
-                          minHeight: "28px !important",
-                        },
-
-                        "& .MuiDataGrid-columnHeader": {
-                          background: " #F0F0F0",
-                          margin: "6px 8px",
-                        },
-                        "& .MuiDataGrid-columnHeaders": {
-                          background: " #F0F0F0",
-                        },
-                        "& .MuiDataGrid-row": {
-                          margin: "6px",
-                          maxHeight: "28px !important",
-                          minHeight: "28px !important",
-                        },
-                        "& .MuiDataGrid-row:hover": {
-                          background: "rgba(0, 0, 0, 0.0) !important",
-                        },
-                        "& .MuiDataGrid-row.Mui-selected": {
-                          background: "rgba(0, 0, 0, 0.0) !important",
-                        },
-                      }}
-                      rows={rowsmodal}
-                      columns={columnsmodal}
-                      initialState={{
-                        pagination: {
-                          paginationModel: {
-                            pageSize: 10,
-                          },
-                        },
-                      }}
-                    />
-                  </Box>
-                }
-              />
+              <h1
+                className="title-heading"
+                style={{ fontSize: "32px", paddingLeft: "0" }}
+              >
+                Tổng quan
+              </h1>
             </Box>
+
             <Box>
-              <CustomBox
-                background="rgba(255, 217, 61, 0.20)"
-                title="5"
-                detail="Đi muộn"
-                height="70px"
-                width="300px"
-                borderRadius="10px"
-                marginBottom="8px"
-                colorTitle="#FFD93D"
-              />
-              {/* <CommonModal
+              <img src={kosin} alt="" />
+            </Box>
+          </Box>
+          {/* status */}
+          <Box className="display-flexbody">
+            <Box
+              display="flex"
+              justifyContent="space-between"
+              marginBottom="16px"
+            >
+              <h4
+                className="title-text"
+                style={{ fontSize: "14px", fontWeight: "400" }}
+              >
+                Chấm công hôm nay
+              </h4>
+              <h4 className="title-text" style={{ fontSize: "14px" }}>
+                08:56:32 thứ 3 ngày 03 tháng 10
+              </h4>
+            </Box>
+
+            <Box display="flex" justifyContent="space-between">
+              <Box sx={{ width: "24%" }}>
+                <CustomBox
+                  onclick={handleOpenModal}
+                  background="rgba(107, 203, 119, 0.20)"
+                  colorTitle="#6BCB77"
+                  title="35"
+                  detail="Vào làm"
+                  height="70px"
+                  width="100%"
+                  borderRadius="10px"
+                  marginBottom="8px"
+                />
+                <CommonModal
+                  stylebuttons={{
+                    width: "679px",
+                    display: "flex",
+                    justifyContent: "flex-end",
+                  }}
+                  width="712"
+                  title="Danh sách nhân viên vào làm"
+                  isOpen={isModalOpen}
+                  handleClose={handleCloseModal}
+                  content={
+                    <Box sx={{ height: 322, width: "100%" }}>
+                      <DataGrid
+                        sx={{
+                          "& .MuiDataGrid-cell": {
+                            border: "1px solid #F0F0F0",
+                            borderRadius: "2px",
+                            margin: "0 8px",
+                            maxHeight: "28px !important",
+                            minHeight: "28px !important",
+                          },
+
+                          "& .MuiDataGrid-columnHeader": {
+                            background: " #F0F0F0",
+                            margin: "6px 8px",
+                          },
+                          "& .MuiDataGrid-columnHeaders": {
+                            background: " #F0F0F0",
+                          },
+                          "& .MuiDataGrid-row": {
+                            margin: "6px",
+                            maxHeight: "28px !important",
+                            minHeight: "28px !important",
+                          },
+                          "& .MuiDataGrid-row:hover": {
+                            background: "rgba(0, 0, 0, 0.0) !important",
+                          },
+                          "& .MuiDataGrid-row.Mui-selected": {
+                            background: "rgba(0, 0, 0, 0.0) !important",
+                          },
+                        }}
+                        rows={rowsmodal}
+                        columns={columnsmodal}
+                        initialState={{
+                          pagination: {
+                            paginationModel: {
+                              pageSize: 10,
+                            },
+                          },
+                        }}
+                      />
+                    </Box>
+                  }
+                />
+              </Box>
+              <Box sx={{ width: "24%" }}>
+                <CustomBox
+                  background="rgba(255, 217, 61, 0.20)"
+                  title="5"
+                  detail="Đi muộn"
+                  height="70px"
+                  width="100%"
+                  borderRadius="10px"
+                  marginBottom="8px"
+                  colorTitle="#FFD93D"
+                />
+                {/* <CommonModal
                 stylebuttons={{
                   width: "679px",
                   display: "flex",
@@ -576,20 +572,20 @@ function Tongquan() {
                 isOpen={isModalOpen2}
                 handleClose={handleCloseModal2}
               /> */}
-            </Box>
+              </Box>
 
-            <Box>
-              <CustomBox
-                background="rgba(231, 76, 60, 0.20)"
-                colorTitle="#E74C3C"
-                title="12"
-                detail="Chưa vào"
-                height="70px"
-                width="300px"
-                borderRadius="10px"
-                marginBottom="8px"
-              />
-              {/* <CommonModal
+              <Box sx={{ width: "24%" }}>
+                <CustomBox
+                  background="rgba(231, 76, 60, 0.20)"
+                  colorTitle="#E74C3C"
+                  title="12"
+                  detail="Chưa vào"
+                  height="70px"
+                  width="100%"
+                  borderRadius="10px"
+                  marginBottom="8px"
+                />
+                {/* <CommonModal
                 stylebuttons={{
                   width: "679px",
                   display: "flex",
@@ -606,20 +602,20 @@ function Tongquan() {
                 isOpen={isModalOpen3}
                 handleClose={handleCloseModal3}
               /> */}
-            </Box>
+              </Box>
 
-            <Box>
-              <CustomBox
-                background="rgba(187, 153, 129, 0.20)"
-                colorTitle="#BB9981"
-                title="2"
-                detail="Nghỉ phép"
-                height="70px"
-                width="300px"
-                borderRadius="10px"
-                marginBottom="8px"
-              />
-              {/* <CommonModal
+              <Box sx={{ width: "24%" }}>
+                <CustomBox
+                  background="rgba(187, 153, 129, 0.20)"
+                  colorTitle="#BB9981"
+                  title="2"
+                  detail="Nghỉ phép"
+                  height="70px"
+                  width="100%"
+                  borderRadius="10px"
+                  marginBottom="8px"
+                />
+                {/* <CommonModal
                 stylebuttons={{
                   width: "679px",
                   display: "flex",
@@ -636,139 +632,147 @@ function Tongquan() {
                 isOpen={isModalOpen4}
                 handleClose={handleCloseModal4}
               /> */}
+              </Box>
             </Box>
           </Box>
-        </Box>
 
-        {/* detail */}
-        <Box className="display-flex1280" marginTop="16px">
-          <Box
-            display="flex"
-            justifyContent="space-between"
-            alignItems="center"
-            marginBottom="16px"
-          >
-            <h4
-              className="title-text"
-              style={{ fontSize: "17px", fontWeight: "500" }}
-            >
-              Lịch sử chấm công
-            </h4>
+          {/* detail */}
+          <Box className="display-flexbody" marginTop="16px">
             <Box
-              sx={{
-                "& .MuiInputBase-input": {
-                  height: "8px !important",
-                  width: " 95px !important",
-                },
-              }}
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
+              marginBottom="16px"
             >
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DemoContainer
-                  components={[
-                    "DatePicker",
-                    "MobileDatePicker",
-                    "DesktopDatePicker",
-                    "StaticDatePicker",
-                  ]}
-                >
-                  <DemoItem>
-                    <DesktopDatePicker defaultValue={dayjs("2023/10/25")} />
-                  </DemoItem>
-                </DemoContainer>
-              </LocalizationProvider>
+              <h4
+                className="title-text"
+                style={{ fontSize: "17px", fontWeight: "500" }}
+              >
+                Lịch sử chấm công
+              </h4>
+              <Box
+                sx={{
+                  "& .MuiInputBase-input": {
+                    height: "8px !important",
+                    width: " 95px !important",
+                  },
+                }}
+              >
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DemoContainer
+                    components={[
+                      "DatePicker",
+                      "MobileDatePicker",
+                      "DesktopDatePicker",
+                      "StaticDatePicker",
+                    ]}
+                  >
+                    <DemoItem>
+                      <DesktopDatePicker defaultValue={dayjs("2023/10/25")} />
+                    </DemoItem>
+                  </DemoContainer>
+                </LocalizationProvider>
+              </Box>
+            </Box>
+
+            <Box display="flex" justifyContent="space-between">
+              <CustomBox
+                width="13.7%"
+                title="T2 2 Th.10"
+                detail="Chi tiết"
+                border="1px solid #303E65"
+                fontTitle="12px"
+                fontDetail="12px"
+              />
+              <CustomBox
+                width="13.7%"
+                title="T2 2 Th.10"
+                detail="Chi tiết"
+                border="1px solid #303E65"
+                fontTitle="12px"
+                fontDetail="12px"
+              />
+              <CustomBox
+                width="13.7%"
+                title="T2 2 Th.10"
+                detail="Chi tiết"
+                border="1px solid #F0F0F0"
+                fontTitle="12px"
+                fontDetail="12px"
+              />
+              <CustomBox
+                width="13.7%"
+                title="T2 2 Th.10"
+                detail="Chi tiết"
+                border="1px solid #F0F0F0"
+                fontTitle="12px"
+                fontDetail="12px"
+              />
+              <CustomBox
+                width="13.7%"
+                title="T2 2 Th.10"
+                detail="Chi tiết"
+                border="1px solid #F0F0F0"
+                fontTitle="12px"
+                fontDetail="12px"
+              />
+              <CustomBox
+                width="13.7%"
+                title="T2 2 Th.10"
+                detail="Chi tiết"
+                border="1px solid #F0F0F0"
+                fontTitle="12px"
+                fontDetail="12px"
+              />
+              <CustomBox
+                width="13.7%"
+                title="T2 2 Th.10"
+                detail="Chi tiết"
+                border="1px solid #F0F0F0"
+                fontTitle="12px"
+                fontDetail="12px"
+              />
+            </Box>
+            <Box sx={{ height: "100%", width: "100%", marginTop: "14px" }}>
+              <DataGrid
+                sx={{
+                  "& .MuiDataGrid-columnHeader": {
+                    color: "#303E65 ",
+                    fontWeight: 700,
+                    fontSize: 12,
+                    background: " #F0F0F0",
+                    minHeight: "50px !important",
+                    maxHeight: "50px !important",
+                  },
+                  "& .MuiDataGrid-row": {
+                    color: "#303E65 ",
+                    fontWeight: 400,
+                    fontSize: 12,
+                    minHeight: "40px !important",
+                    maxHeight: "40px !important",
+                  },
+                  "& .MuiDataGrid-cell": {
+                    minHeight: "40px !important",
+                    maxHeight: "40px !important",
+                  },
+                  "& .MuiDataGrid-columnHeaders": {
+                    background: " #F0F0F0",
+                  },
+                  "& .MuiDataGrid-row:hover": {
+                    background: "rgba(0, 0, 0, 0.0) !important",
+                  },
+                  "& .MuiDataGrid-row.Mui-selected": {
+                    background: "rgba(0, 0, 0, 0.0) !important",
+                  },
+                }}
+                rows={rowss}
+                columns={columns}
+              />
             </Box>
           </Box>
-
-          <Box display="flex" justifyContent="space-between">
-            <CustomBox
-              title="T2 2 Th.10"
-              detail="Chi tiết"
-              border="1px solid #303E65"
-              fontTitle="12px"
-              fontDetail="12px"
-            />
-            <CustomBox
-              title="T2 2 Th.10"
-              detail="Chi tiết"
-              border="1px solid #303E65"
-              fontTitle="12px"
-              fontDetail="12px"
-            />
-            <CustomBox
-              title="T2 2 Th.10"
-              detail="Chi tiết"
-              border="1px solid #F0F0F0"
-              fontTitle="12px"
-              fontDetail="12px"
-            />
-            <CustomBox
-              title="T2 2 Th.10"
-              detail="Chi tiết"
-              border="1px solid #F0F0F0"
-              fontTitle="12px"
-              fontDetail="12px"
-            />
-            <CustomBox
-              title="T2 2 Th.10"
-              detail="Chi tiết"
-              border="1px solid #F0F0F0"
-              fontTitle="12px"
-              fontDetail="12px"
-            />
-            <CustomBox
-              title="T2 2 Th.10"
-              detail="Chi tiết"
-              border="1px solid #F0F0F0"
-              fontTitle="12px"
-              fontDetail="12px"
-            />
-            <CustomBox
-              title="T2 2 Th.10"
-              detail="Chi tiết"
-              border="1px solid #F0F0F0"
-              fontTitle="12px"
-              fontDetail="12px"
-            />
-          </Box>
-          <Box sx={{ height: "100%", width: "100%", marginTop: "14px" }}>
-            <DataGrid
-              sx={{
-                "& .MuiDataGrid-columnHeader": {
-                  color: "#303E65 ",
-                  fontWeight: 700,
-                  fontSize: 12,
-                  background: " #F0F0F0",
-                  minHeight: "50px !important",
-                  maxHeight: "50px !important",
-                },
-                "& .MuiDataGrid-row": {
-                  color: "#303E65 ",
-                  fontWeight: 400,
-                  fontSize: 12,
-                  minHeight: "40px !important",
-                  maxHeight: "40px !important",
-                },
-                "& .MuiDataGrid-cell": {
-                  minHeight: "40px !important",
-                  maxHeight: "40px !important",
-                },
-                "& .MuiDataGrid-columnHeaders": {
-                  background: " #F0F0F0",
-                },
-                "& .MuiDataGrid-row:hover": {
-                  background: "rgba(0, 0, 0, 0.0) !important",
-                },
-                "& .MuiDataGrid-row.Mui-selected": {
-                  background: "rgba(0, 0, 0, 0.0) !important",
-                },
-              }}
-              rows={rowss}
-              columns={columns}
-            />
-          </Box>
         </Box>
-      </Box>
-    </>
+      }
+    />
   );
 }
 
